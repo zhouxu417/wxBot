@@ -42,15 +42,15 @@ class TulingWXBot(WXBot):
                 result = respond['text'].replace('<br>', '  ')
                 result = result.replace(u'\xa0', u' ')
 
-            print '    ROBOT:', result
+            #print '    ROBOT:', result
             return result
         else:
-            return u"知道啦"
+            return u"I know"
 
     def auto_switch(self, msg):
         msg_data = msg['content']['data']
-        stop_cmd = [u'退下', u'走开', u'关闭', u'关掉', u'休息', u'滚开']
-        start_cmd = [u'出来', u'启动', u'工作']
+        stop_cmd = [u'退下', u'走开', u'关闭', u'关掉', u'休息', u'滚开','shut']
+        start_cmd = [u'出来', u'启动', u'工作','open']
         if self.robot_switch:
             for i in stop_cmd:
                 if i == msg_data:
@@ -98,12 +98,11 @@ class TulingWXBot(WXBot):
 
 def main():
     bot = TulingWXBot()
-    bot.DEBUG = True
-    bot.conf['qr'] = 'png'
+    bot.DEBUG = False
+    bot.conf['qr'] = 'tty'
 
     bot.run()
 
 
 if __name__ == '__main__':
     main()
-
